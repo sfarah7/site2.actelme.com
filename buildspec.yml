@@ -17,8 +17,8 @@ artifacts:
   base-directory: 'C:\codebuild\artifacts\_PublishedWebsites\${env:PROJECT2}_Package\Archive\'
  
   secondary-artifacts:
-    Artifact 2:
+    Site3:
         files:
           - '**/*'
-        base-directory: 'C:\codebuild\artifacts\_PublishedWebsites\${env:PROJECT3}_Package\Archive\'
+        base-directory: 'C:\codebuild\artifacts\_PublishedWebsites\${env:PROJECT2}_Package\Archive\'
     
