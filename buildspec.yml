@@ -1,0 +1,25 @@
+version: 0.2
+
+env:
+  variables:
+    PROJECT2: Site2
+    PROJECT3: Site1
+    DOTNET_FRAMEWORK: 4.5
+phases:
+  build:
+    commands:
+      - nuget restore
+      - msbuild $env:PROJECT2.csproj /p:TargetFrameworkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployIisAppPath="Site2" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
+      - cd ../site1.actelme.com
+      - msbuild $env:PROJECT3.csproj /p:TargetFrameworkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployIisAppPath="Site1" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'C:\codebuild\artifacts\_PublishedWebsites\${env:PROJECT2}_Package\Archive\'
+ 
+  secondary-artifacts:
+    Site1:
+        files:
+          - '**/*'
+        base-directory: 'C:\codebuild\artifacts\_PublishedWebsites\${env:PROJECT3}_Package\Archive\'
+    
