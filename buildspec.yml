@@ -9,7 +9,6 @@ phases:
   build:
     commands:
       - nuget restore
-      - cd $CODEBUILD_SRC_DIR
       - msbuild $env:PROJECT2.csproj /p:TargetFrameworkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployIisAppPath="Site2" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
       - cd $CODEBUILD_SRC_DIR_Site3
       - msbuild $env:PROJECT3.csproj /p:TargetFrameworkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployIisAppPath="Site3" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
