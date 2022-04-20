@@ -20,5 +20,5 @@ artifacts:
     Site3:
         files:
           - '**/*'
-        base-directory: 'C:\codebuild\artifacts\_PublishedWebsites\${env:PROJECT2}_Package\Archive\'
+        base-directory: $CODEBUILD_SRC_DIR_Site3
     
